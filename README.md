@@ -78,7 +78,3 @@ A plot showing training and validation accuracy is generated to visualize the mo
 ## Acknowledgments
 - The **[astroNN library](https://github.com/henrysky/astroNN)** for making datasets and tools accessible.
 - The developers of the **Galaxy10 dataset** for contributing to open research in astrophysics.
-
----
-
-Feel free to modify the sections based on specific adjustments or results from your implementation!
