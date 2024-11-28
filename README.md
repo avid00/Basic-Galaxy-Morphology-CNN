@@ -1,8 +1,4 @@
 # Basic-Galaxy-Morphology-CNN
-Here’s a **README.md** file based on the notebook content:
-
----
-
 # Galaxy Morphology Classification
 
 This repository provides an implementation of a Convolutional Neural Network (CNN) for classifying galaxy morphologies using the Galaxy10 dataset. The project utilizes TensorFlow for building and training the model and follows standard preprocessing steps to ensure efficient data handling and model performance.
