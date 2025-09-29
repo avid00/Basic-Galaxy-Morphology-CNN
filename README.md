@@ -1,80 +1,61 @@
-# Basic-Galaxy-Morphology-CNN
-# Galaxy Morphology Classification
+# CNN for Galaxy Classification + Webapp
 
 This repository provides an implementation of a Convolutional Neural Network (CNN) for classifying galaxy morphologies using the Galaxy10 dataset. The project utilizes TensorFlow for building and training the model and follows standard preprocessing steps to ensure efficient data handling and model performance.
 
-## Table of Contents
-- [Dataset](#dataset)
-- [Dependencies](#dependencies)
-- [Data Preprocessing](#data-preprocessing)
-- [Model Architecture](#model-architecture)
-- [Training](#training)
-- [Results](#results)
-- [Usage](#usage)
+The accompanying webapp based on this model can be found [here](https://cnnapp-amisha.streamlit.app/%255D%28https:/cnnapp-amisha.streamlit.app/).
 
----
+## TL;DR
+This repository contains a Jupyter notebook (`Final_CNNN(1).ipynb`) that trains and evaluates a CNN for image classification. The notebook includes data loading, model definition, training loop, evaluation (metrics & confusion matrix), and sample inference cells. Detected frameworks/tools used: TensorFlow/Keras, model checkpoints.
 
-## Dataset
-The project uses the **Galaxy10 dataset** available [here](https://astronn.readthedocs.io/en/latest/galaxy10.html). This dataset contains:
-- **21,785 galaxy images**
-- **10 classes** of galaxy morphologies
-- Each image is of size **69x69 pixels** with **3 color channels (RGB)**.
+## What’s inside
+- `Final_CNNN(1).ipynb` — main notebook (training, evaluation, basic inference).
+- `models/` — (optional) suggested folder for checkpoints (not committed).
+- `data/` — place small sample images here; full dataset should be downloaded externally.
+- `assets/` — add demo GIF / screenshots for portfolio.
 
-## Dependencies
-The following Python libraries are required to run the code:
-- `TensorFlow`
-- `h5py`
-- `numpy`
-- `matplotlib`
-- `scikit-learn`
-
-Install these dependencies using:
+## How to run (recommended)
+1. Clone the repo:
 ```bash
-pip install tensorflow h5py numpy matplotlib scikit-learn
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
+```
+2. Create a virtual environment and install dependencies:
+```bash
+python -m venv .venv
+source .venv/bin/activate    # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+3. Launch the notebook:
+```bash
+jupyter lab Final_CNNN(1).ipynb
+# or
+jupyter notebook Final_CNNN(1).ipynb
 ```
 
-## Data Preprocessing
-1. **Normalizing Images**: Pixel values are scaled to the range [0, 1] by dividing by 255.
-2. **Splitting Data**: The dataset is divided into **training (80%)** and **validation (20%)** subsets using `train_test_split`.
-3. **Data Augmentation**: The training data is augmented using random transformations like rotation, shifting, and flipping to improve model generalization.
+## Quick usage notes
+- The notebook appears to use: TensorFlow/Keras, model checkpoints.
+- If large model weights are used, **do not** commit them. Instead, add a `scripts/download_weights.py` that fetches weights from a release or Hugging Face, and load at runtime.
+- Add a small `data/sample/` folder (≤ 5 MB) with a couple sample images so reviewers can run inference cells immediately.
+- For portability, consider converting the notebook into a standalone script or Streamlit app (see below).
 
-## Model Architecture
-The CNN model is built using TensorFlow's Keras API:
-1. **Convolutional Layers**: Extract features from images using 3x3 filters.
-2. **Max Pooling Layers**: Reduce feature map size while retaining essential information.
-3. **Flatten and Dense Layers**: Map extracted features to the 10 output classes.
+## Tips to make this portfolio-ready
+1. **Add a short README** (this file) and a one-paragraph summary at the top of the notebook (markdown cell).
+2. **Include a demo GIF** (`assets/demo.gif`) that shows: training quick pass / upload → inference / Grad-CAM (if present).
+3. **Provide `requirements.txt`** listing exact versions detected from the notebook (e.g., PyTorch/TensorFlow, torchvision, scikit-learn, matplotlib, opencv-python, pillow).
+4. **Create `scripts/download_weights.py`** to fetch heavy checkpoints and place them in `models/`.
+5. **Optional:** Convert core inference cell to `streamlit_app.py` for a live demo (Streamlit Community Cloud).
 
-### Summary of the Model:
-- Input: Images resized to **64x64x3**
-- Architecture: Two convolutional layers, followed by max-pooling, flattening, and fully connected dense layers.
-- Output: Probabilities for 10 classes using a softmax activation.
+## Minimal `requirements.txt` suggestion
+```
+jupyterlab
+numpy
+pandas
+matplotlib
+scikit-learn
+Pillow
+opencv-python
+torch        # or tensorflow (replace as detected in notebook)
+torchvision  # if using PyTorch
+seaborn
+```
 
-## Training
-- **Optimizer**: Adam
-- **Loss Function**: Sparse categorical cross-entropy
-- **Metrics**: Accuracy
-- **Epochs**: 10
-- **Batch Size**: 32
-
-Training is performed using the augmented data generator for the training and validation datasets.
-
-## Results
-A plot showing training and validation accuracy is generated to visualize the model's performance. The CNN demonstrates its ability to classify galaxies effectively, as evidenced by improving accuracy over epochs.
-
-## Usage
-1. Clone this repository:
-   ```bash
-   git clone <repository_url>
-   cd Galaxy-Morphology-Classification
-   ```
-2. Ensure the Galaxy10 dataset is downloaded and available at `Galaxy10.h5`.
-3. Run the Jupyter notebook:
-   ```bash
-   jupyter notebook Galaxy_Morphology_Classification.ipynb
-   ```
-
----
-
-## Acknowledgments
-- The **[astroNN library](https://github.com/henrysky/astroNN)** for making datasets and tools accessible.
-- The developers of the **Galaxy10 dataset** for contributing to open research in astrophysics.
